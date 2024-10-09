@@ -1,7 +1,6 @@
 <?php
 $jogo="Pokemon";
 $preco=40;
-
 ?>
 
 
