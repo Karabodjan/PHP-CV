@@ -23,8 +23,8 @@
             </ul>
         </div>
         <div class="nav-button">
-            <button class="btn white-btn" id="loginBtn" onclick="login()">Sign In</button>
-            <button class="btn" id="registerBtn" onclick="register()">Sign Up</button>
+        <button class="btn white-btn" onclick="window.location.href='login.php'">Sign In</button>
+         <button class="btn" onclick="window.location.href='singup.php'">Sign Up</button>
         </div>
         <div class="nav-menu-btn">
             <i class="bx bx-menu" onclick="myMenuFunction()"></i>

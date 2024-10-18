@@ -2,8 +2,6 @@
 <html lang="fr">
 <head>
     <?php include 'includes/head.php'; ?>
-    <link rel="stylesheet" href="index.css"> 
-    <link rel="stylesheet" href="includes/navbar.css">
 </head>
 <body>
     <?php include 'includes/navbar.php'; ?>
