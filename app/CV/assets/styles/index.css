@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: #212121;
+}
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -30vh;
+}
+
+.welcome-text {
+    font-size: 4vw; 
+    color: white; 
+    margin-bottom: 1vh; 
+}
+
+h4{
+    position: relative;
+    font-size: 6vw;
+    color: #252839;
+    -webkit-text-stroke: 0.2vw #383d52;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh;
+}
+
+h4::before{
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    color:  #ff9d00;
+    -webkit-text-stroke: 0vw #383d52;
+    border-right: 2px solid  #ff9d00 ;
+    overflow: hidden;
+    animation: animate 6s linear infinite;
+}
+
+@keyframes animate {
+    0%,10%,100%
+    {
+        width: 0;
+    }
+    70%,90%
+    {
+        width: 100%;
+    }
+    
+}
+
+.home-cta {
+    position: absolute;
+    width: 100%;
+    top: 55%;
+    padding-top: 69px;
+    padding-bottom: 55px;
+    min-height: 385px;
+    display: flex; 
+    justify-content: space-around; 
+}
+
+.left{
+    width: 50%;
+    height: 100%;
+}
+
+.right {
+    width: 50%;
+    height: 100%;
+}
+
+.left-container{
+    text-align: center;
+    margin-left: 30%;
+
+} 
+.right-container {
+    text-align: center;
+    margin-right: 30%;
+}
+
+.img-container {
+    margin-bottom: 10px; 
+}
+
+.img-container img {
+    max-width: 100px; 
+    height: auto; 
+}
+
+.cta-button a {
+    width: 150px;
+    display: inline-block;
+    padding: 10px 20px; 
+    background-color: #ff9d00; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    transition: background-color 0.3s; 
+}
+
+.cta-button a:hover {
+    background-color: #ad6b00; 
+}

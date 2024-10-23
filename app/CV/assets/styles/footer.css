@@ -1,0 +1,37 @@
+footer{
+    background-color: #121212;
+    color: #dfdfdf;
+    padding: 30px 100px ;/*entre le contenue et les bordes*/
+}
+
+footer h3{
+    color: white;
+}
+
+.footer-bottom {
+    display: flex;/* les buttom seront les un à cote d'autres*/
+    justify-content: center;
+}
+
+a.social{
+    display: block;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: white;
+    color: black;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+a.social:hover{
+    background-color: #ff9d00;
+    color: white;
+}
+
+a.social:not(:last-child){
+    margin-right: 10px;
+}
