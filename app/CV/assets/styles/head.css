@@ -13,7 +13,7 @@
 
 body {
     font-family: sans-serif;
-    height: 100vh; /*ça va prendre 100% de l'hauteur de l'ecran */
+    height: 100vh; 
     background-color: #212121;
    }
 
@@ -25,14 +25,14 @@ a,
 a:visited,
 a:active{
     text-decoration: none;
-    color: inherit; /*couler herité, pour enlever le blue et violet*/
-    transition: all 0.2s ease/* suspeito*/
+    color: inherit;
+    transition: all 0.2s ease
 }
 
 nav{
     color: white;
     background-color: #121212;
-    padding: 10px 40px; /*haut-bas et droite-gauche*/
+    padding: 10px 40px; 
 }
 
 .logo {
@@ -73,7 +73,7 @@ a:hover{
 }
 
 nav  ul li {
-    position: relative;/* suspeito*/
+    position: relative;
 }
 
 nav  ul li ul {

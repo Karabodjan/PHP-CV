@@ -1,7 +1,8 @@
+
 footer{
     background-color: #121212;
     color: #dfdfdf;
-    padding: 30px 100px ;/*entre le contenue et les bordes*/
+    padding: 30px 100px ;
 }
 
 footer h3{
@@ -9,7 +10,7 @@ footer h3{
 }
 
 .footer-bottom {
-    display: flex;/* les buttom seront les un à cote d'autres*/
+    display: flex;
     justify-content: center;
 }
 
