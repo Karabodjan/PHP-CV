@@ -1,36 +1,36 @@
 <?php
-session_start(); // Démarrer la session
-$error_message = ''; // Initialiser le message d'erreur
+session_start(); // Start the session
+$error_message = ''; // Initialize error message
 
 if (isset($_POST['validate'])) {
     $pseudo = trim(strip_tags($_POST['pseudo']));
     $password = $_POST['password'];
 
-    // Connexion à la base de données
+    // Connect to the database
     $conn = new mysqli('db', 'root', 'root', 'port_db');
 
-    // Vérifier la connexion
+    // Check the connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Préparer la requête
+    // Prepare the query
     $stmt = $conn->prepare("SELECT id, password FROM users WHERE pseudo = ?");
     $stmt->bind_param("s", $pseudo);
     $stmt->execute();
     $stmt->store_result();
 
-    // Vérifier si l'utilisateur existe
+    // Check if user exists
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($user_id, $hashed_password); // Lier l'ID utilisateur et le mot de passe haché
+        $stmt->bind_result($id, $hashed_password);
         $stmt->fetch();
 
-        // Vérifier le mot de passe
+        // Verify password
         if (password_verify($password, $hashed_password)) {
-            // Connexion réussie
-            $_SESSION['user_id'] = $user_id; // Stocker l'ID utilisateur dans la session
-            header("Location: index.php"); // Rediriger vers index.php
-            exit(); // Assurez-vous d'appeler exit après header
+            // Successful login
+            $_SESSION['id'] = $id;
+            header("Location: index.php");
+            exit();
         } else {
             $error_message = "Incorrect password.";
         }
@@ -49,7 +49,7 @@ if (isset($_POST['validate'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="login.css"> 
+    <link rel="stylesheet" href="assets/styles/login.css"> 
     <title>Login</title>
 </head>
 <body>
@@ -73,5 +73,8 @@ if (isset($_POST['validate'])) {
     <br><br>
     <a href="signup.php"><p>I don't have an account</p></a>
 </form>
+
+<?php include 'includes/footer.php';?>
+
 </body>
 </html>

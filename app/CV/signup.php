@@ -1,10 +1,14 @@
 <?php
+session_start(); // Start the session
+$error_message = ''; // Initialize error message
+
 if (isset($_POST['validate'])) {
+    // Retrieve and sanitize user inputs
     $pseudo = trim(strip_tags($_POST['pseudo']));
     $lastname = trim(strip_tags($_POST['lastname']));
     $firstname = trim(strip_tags($_POST['firstname']));
-    $email = trim(strip_tags($_POST['email'])); 
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
+    $email = trim(strip_tags($_POST['email']));
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); 
 
     // Connect to the database
     $conn = new mysqli('db', 'root', 'root', 'port_db');
@@ -15,25 +19,25 @@ if (isset($_POST['validate'])) {
     }
 
     // Check if the pseudo or email already exists
-    $stmt = $conn->prepare("SELECT * FROM users WHERE pseudo = ? OR email = ?"); 
+    $stmt = $conn->prepare("SELECT * FROM users WHERE pseudo = ? OR email = ?");
     $stmt->bind_param("ss", $pseudo, $email);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        // Display an error message without outputting HTML before redirect
+        // Error if pseudo or email exists
         $error_message = "Pseudo or email already exists. Please choose another.";
     } else {
         // Insert the user into the database
-        $stmt->close(); 
-        $stmt = $conn->prepare("INSERT INTO users (pseudo, lastname, firstname, email, password) VALUES (?, ?, ?, ?, ?)"); 
+        $stmt->close();
+        $stmt = $conn->prepare("INSERT INTO users (pseudo, lastname, firstname, email, password) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param("sssss", $pseudo, $lastname, $firstname, $email, $password);
 
         if (!$stmt->execute()) {
             $error_message = "Error registering user: " . $stmt->error;
         } else {
-            // User registered successfully, redirect
-            header("Location: login.php"); 
+            // Redirect to login after successful registration
+            header("Location: login.php");
             exit();
         }
     }
@@ -41,6 +45,7 @@ if (isset($_POST['validate'])) {
     $stmt->close();
     $conn->close();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +54,7 @@ if (isset($_POST['validate'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="signup.css"> 
+    <link rel="stylesheet" href="assets/styles/signup.css"> 
     <title>Sign Up</title>
 </head>
 <body>
