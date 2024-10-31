@@ -18,7 +18,7 @@ services:
     image: mariadb:latest
     environment:
       MYSQL_ROOT_PASSWORD: "root"
-      MYSQL_DATABASE: "cv_db"
+      MYSQL_DATABASE: "port_db"
     volumes:
       - mysqldata:/var/lib/mysql
     ports:
@@ -30,4 +30,4 @@ services:
       - "8080:8080"
 
 volumes:
-  mysqldata:
+  mysqldata: {}
